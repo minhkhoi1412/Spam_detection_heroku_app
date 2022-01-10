@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from model_building.entity_tagging import entity_tagging
-from model_building import utils
+from model_building import entity_tagging, utils
 from datetime import datetime
 import pickle
 
