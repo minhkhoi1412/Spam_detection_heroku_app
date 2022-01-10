@@ -26,7 +26,7 @@ uploaded_file = st.sidebar.file_uploader("Upload your input Excel file", type=["
 
 if uploaded_file is not None:
     input_df = pd.read_excel(uploaded_file, dtype={'msg': str})
-    messages_raw = pd.read_excel('./message_modified_v1.xlsx', dtype={'msg': str})
+    messages_raw = pd.read_excel('./message_modified_v1.2.xlsx', dtype={'msg': str})
     messages = messages_raw.drop(columns='class')
     df = pd.concat([input_df, messages], ignore_index=True)
     list_content = df['msg'].to_list()
@@ -36,7 +36,7 @@ if uploaded_file is not None:
     st.write(label_predict)
 
 elif len(input_message) > 0:
-    messages_raw = pd.read_excel('./message_modified_v1.xlsx', dtype={'msg': str})
+    messages_raw = pd.read_excel('./message_modified_v1.2.xlsx', dtype={'msg': str})
     list_content = messages_raw['msg'].to_list()
     list_content.insert(0, input_message)
     list_content = entity_tagging.entity_tagging(list_content)
