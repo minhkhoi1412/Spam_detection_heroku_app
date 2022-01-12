@@ -37,11 +37,11 @@ if uploaded_file is not None:
     for i in range(len(label_predict)):
         if label_predict[i] == 0:
             label_predict[i] = 'ham'
-    
+
         if label_predict[i] == 1:
             label_predict[i] = 'spam'
 
-    df = pd.DataFrame(data={'Message': list_content, 'Label': label_predict})
+    df = pd.DataFrame(data={'Message': input_df['msg'].to_list(), 'Label': label_predict})
     st.write(df)
 
 elif len(input_message) > 0:
