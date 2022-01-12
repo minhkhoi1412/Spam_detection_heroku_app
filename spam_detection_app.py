@@ -42,7 +42,7 @@ if uploaded_file is not None:
             label_predict[i] = 'spam'
 
     df = pd.DataFrame(data={'Message': input_df['msg'].to_list(), 'Label': label_predict})
-    st.write(df)
+    st.dataframe(df)
 
 elif len(input_message) > 0:
     messages_raw = pd.read_excel('./message_modified_v1.2.xlsx', dtype={'msg': str})
