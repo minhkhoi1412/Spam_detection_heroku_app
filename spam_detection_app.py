@@ -32,6 +32,7 @@ if uploaded_file is not None:
     list_content = entity_tagging.entity_tagging(list_content)
     list_content_vec, list_len_sms, dictionary = utils.vectorize(list_content, 'bow')
     label_predict = load_clf.predict(list_content_vec[:1])
+    label_predict = label_predict.tolist()
 
     for i in range(len(label_predict)):
         if label_predict[i] == 0:
