@@ -32,7 +32,16 @@ if uploaded_file is not None:
     list_content = entity_tagging.entity_tagging(list_content)
     list_content_vec, list_len_sms, dictionary = utils.vectorize(list_content, 'bow')
     label_predict = load_clf.predict(list_content_vec[:1])
-    st.write(label_predict)
+
+    for i in range(len(label_predict)):
+        if label_predict[i] == 0:
+            label_predict[i] = 'ham'
+    
+        if label_predict[i] == 1:
+            label_predict[i] = 'spam'
+
+    df = pd.DataFrame(data={'Message': list_content, 'Label': label_predict})
+    st.dataframe(df)
 
 elif len(input_message) > 0:
     messages_raw = pd.read_excel('./message_modified_v1.2.xlsx', dtype={'msg': str})
@@ -41,5 +50,11 @@ elif len(input_message) > 0:
     list_content = entity_tagging.entity_tagging(list_content)
     list_content_vec, list_len_sms, dictionary = utils.vectorize(list_content, 'bow')
     label_predict = load_clf.predict(list_content_vec[:1])
-    st.write(label_predict)
+
+    if label_predict[0] == 0:
+        label = 'ham'
+    else:
+        label = 'spam'
+
+    st.write('This is %s message' %(label))
 
